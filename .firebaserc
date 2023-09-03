@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "labo-4-a7182": {
+      "hosting": {
+        "saladejuegos": [
+          "labo-4-a7182"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "labo-4-a7182"
+  }
+}

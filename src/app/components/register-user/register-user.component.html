@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div *ngIf="!loading" class="card" style="width: 400px">
+    <div class="card-body">
+      <h2 class="text-center mb-4">Registrarse</h2>
+      <form (ngSubmit)="registrar()" [formGroup]="registrarUsuarios">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Correo Electronico</label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            formControlName="email"
+          />
+          <span
+            *ngIf="
+              registrarUsuarios.get('email')?.hasError('required') &&
+              registrarUsuarios.get('email')?.touched
+            "
+            class="text-danger"
+          >
+            EL <strong>correo</strong> es requerido</span
+          >
+          <span
+            *ngIf="
+              registrarUsuarios.get('email')?.hasError('email') &&
+              registrarUsuarios.get('email')?.touched
+            "
+            class="text-danger"
+          >
+            EL <strong>correo</strong> es invalido</span
+          >
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label"
+            >Contraseña</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            formControlName="password"
+          />
+          <span
+            *ngIf="
+              registrarUsuarios.get('password')?.hasError('required') &&
+              registrarUsuarios.get('password')?.touched
+            "
+            class="text-danger"
+          >
+            La <strong>contraseña</strong> es requerido</span
+          >
+          <span
+            *ngIf="
+              registrarUsuarios.get('password')?.hasError('minlength') &&
+              registrarUsuarios.get('password')?.touched
+            "
+            class="text-danger"
+          >
+            La <strong>contraseña</strong> debe de tener 6 caracteres</span
+          >
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label"
+            >Repetir Contraseña</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword2"
+            formControlName="repetirPassword"
+          />
+        </div>
+        <button
+          class="btn btn-primary w-100 btn-lg"
+          type="submit"
+          [disabled]="registrarUsuarios.invalid"
+        >
+          ACEPTAR
+        </button>
+      </form>
+      <div class="text-center mt-3">
+        <a routerLink="/Login">Volver</a>
+      </div>
+    </div>
+  </div>
+  <app-spinner *ngIf="loading"></app-spinner>
+</div>

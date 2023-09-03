@@ -25,7 +25,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -91,8 +92,18 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2,
+            "browserTarget": "saladejuegos:build:production"
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "0a731aa1-3ae2-4c6e-91f7-a7adfe2bb7a1"
   }
 }
