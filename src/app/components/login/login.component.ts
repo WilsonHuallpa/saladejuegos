@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { LogUser } from 'src/app/interfaces/LogUser';
 import { AuthRegisterService } from 'src/app/services/auth-register.service';
 import { FireErrorService } from 'src/app/services/fire-error.service';
-
+import { LogService } from 'src/app/services/log.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +19,8 @@ export class LoginComponent {
     private authUser: AuthRegisterService,
     private router: Router,
     private toastr: ToastrService,
-    private fireError: FireErrorService
+    private fireError: FireErrorService,
+    private logService: LogService
   ) {
     this.loginUsuario = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -32,6 +34,12 @@ export class LoginComponent {
     this.authUser
       .loginUser(email, password)
       .then((user) => {
+        const fechaIngreso = new Date().toLocaleString() || '';
+        const loguser: LogUser = {
+          usuario: email,
+          fechaIngreso: fechaIngreso,
+        };
+        this.logService.logRegisterUser(loguser);
         this.router.navigate(['/home']);
       })
       .catch((error) => {
@@ -39,5 +47,11 @@ export class LoginComponent {
         this.toastr.error(this.fireError.codeError(error.code), 'Error');
       });
   }
-
+  
+  quickAccess( email:string , password:string ) {
+    this.loginUsuario.setValue({
+      email: email,
+      password: password
+    });
+  }
 }

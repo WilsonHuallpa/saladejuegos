@@ -12,10 +12,8 @@ export class AuthRegisterService {
   obtenerUserRegistrado(): Promise<User | null> {
     const user = this.auth.currentUser;
     if (user) {
-      // El usuario está autenticado
       return Promise.resolve(user);
     } else {
-      // El usuario no está autenticado
       return Promise.resolve(null);
     }
   }

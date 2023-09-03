@@ -4,7 +4,8 @@ import { AuthRegisterService } from 'src/app/services/auth-register.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FireErrorService } from 'src/app/services/fire-error.service';
-
+import { LogService } from 'src/app/services/log.service';
+import { LogUser } from 'src/app/interfaces/LogUser';
 @Component({
   selector: 'app-register-user',
   templateUrl: './register-user.component.html',
@@ -18,7 +19,8 @@ export class RegisterUserComponent implements OnInit {
     private authUser: AuthRegisterService,
     private router: Router,
     private toastr: ToastrService,
-    private fireError: FireErrorService
+    private fireError: FireErrorService,
+    private logService: LogService
   ) {
     this.registrarUsuarios = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -44,12 +46,18 @@ export class RegisterUserComponent implements OnInit {
     this.authUser
       .registerUser(email, password)
       .then(() => {
+        const fechaIngreso = new Date().toLocaleString() || '';
+        const loguser: LogUser = {
+          usuario: email,
+          fechaIngreso: fechaIngreso,
+        };
+        this.logService.logRegisterUser(loguser);
         this.loading = false;
         this.toastr.success(
           'El usuario fue registrado con exito!',
           'Usuario registrado'
         );
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
       })
       .catch((error) => {
         this.loading = false;
