@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 //Modulos
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -22,6 +22,8 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+import { ChatComponent } from './components/chat/chat.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     PasswordVerificationComponent,
     SpinnerComponent,
     RecoverPasswordComponent,
+    ChatComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     provideStorage(() => getStorage()),
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

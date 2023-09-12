@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { PasswordVerificationComponent } from './components/password-verification/password-verification.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path:'registrar-usuario', component: RegisterUserComponent},
   { path:'verifivar-pasword', component: PasswordVerificationComponent},
   { path:'recuperar-password', component: RecoverPasswordComponent},
+  { path:'chat', component: ChatComponent},
   { path:'**', redirectTo: 'login', pathMatch: 'full' },
 ];
 

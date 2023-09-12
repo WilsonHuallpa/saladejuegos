@@ -47,7 +47,7 @@ export class LoginComponent {
         this.toastr.error(this.fireError.codeError(error.code), 'Error');
       });
   }
-  
+
   quickAccess( email:string , password:string ) {
     this.loginUsuario.setValue({
       email: email,

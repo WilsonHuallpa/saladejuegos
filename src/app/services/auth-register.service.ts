@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, sendPasswordResetEmail, signInWithEmailAndPassword, User } from '@angular/fire/auth';
+import { Auth, sendPasswordResetEmail, signInWithEmailAndPassword, User, getAuth } from '@angular/fire/auth';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 @Injectable({
@@ -29,5 +29,8 @@ export class AuthRegisterService {
   }
   logout() {
     return this.auth.signOut();
+  }
+  getUserLogged(){
+    return this.auth.currentUser;
   }
 }
