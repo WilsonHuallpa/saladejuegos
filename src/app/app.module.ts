@@ -24,6 +24,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { ChatComponent } from './components/chat/chat.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AhorcadoComponent } from './components/ahorcado/ahorcado.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HeaderComponent } from './components/header/header.component';
     RecoverPasswordComponent,
     ChatComponent,
     HeaderComponent,
+    AhorcadoComponent,
   ],
   imports: [
     BrowserModule,
