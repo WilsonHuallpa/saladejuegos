@@ -12,6 +12,6 @@ export class AppComponent {
 
   shouldShowNavbar(): boolean {
     const currentRoute = this.router.url;
-    return !currentRoute.includes('/login') && !currentRoute.includes('/registrar-usuario') && !currentRoute.includes('/recuperar-password');
+    return !currentRoute.includes('/auth/login') && !currentRoute.includes('/auth/forgot') && !currentRoute.includes('/auth/register');
   }
 }
