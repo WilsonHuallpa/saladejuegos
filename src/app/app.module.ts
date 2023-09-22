@@ -25,7 +25,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 import { ChatComponent } from './components/chat/chat.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AhorcadoComponent } from './components/ahorcado/ahorcado.component';
-
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +54,7 @@ import { AhorcadoComponent } from './components/ahorcado/ahorcado.component';
     ToastrModule.forRoot(), // ToastrModule added
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

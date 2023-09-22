@@ -1,17 +1,20 @@
 <div  *ngIf="usuarioLogeado && !mostrarChat" class="chatIconContainer" (click)="mostrarChat=true">
-  <img src="../../../assets/enviar.png" class="chatIcon" alt="chat-Icon">
+  <img src="../../../assets/chat.png" class="chatIcon" alt="chat-Icon">
 </div>
 <div class="card text-center cardContainer" *ngIf="usuarioLogeado && mostrarChat">
   <div class="card-header">CHAT <div class="closeIcon" (click)="mostrarChat=false">X</div></div>
+       
   <div class="card-body">
     <div id="contenedorDeMensaje" class="contenedorDeMensaje" style="height: 390px; overflow-y: scroll;">
       <div *ngFor="let mensaje of messages" class="msj p-2 mb-2"
-         [ngClass]="(usuarioLogeado.uid==mensaje.emisor) ? 'enviado' : 'recibido'">
-        {{mensaje.texto}}
-        <span>{{mensaje.hora}}</span>
+         [ngClass]=" (usuarioLogeado.uid==mensaje.emisor) ? 'enviado' : 'recibido'">
+        <div class="mensaje-texto">
+          {{mensaje.texto}}
+        </div>
+        <div class="mensaje-hora text-end">
+          {{ mensaje.hora.toDate() | date:'HH:mm:ss' }}
+        </div>
       </div>
-      
-      <!-- <p class="hora">{{ mensaje.hora }}</p> -->
     </div>
   </div>
   <form class="card-footer text-muted input-group" (ngSubmit)="enviarMensaje()">

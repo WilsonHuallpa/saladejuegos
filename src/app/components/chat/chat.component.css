@@ -6,7 +6,7 @@
   bottom: 0.5rem;
 }
 .card-header {
-  background-color: blueviolet;
+  background-color: black;
   color: white;
   font-weight: 700;
 }
@@ -18,12 +18,14 @@
   transform: scale(0.9);
 }
 
+
 .enviado {
   display: block;
   float: right;
   background-color: teal;
   color: white;
   min-width: 50.01%;
+  max-width: 200px;
   border-radius: 10px;
   text-align: left;
 }
@@ -33,39 +35,53 @@
   background-color: gray;
   color: white;
   min-width: 50.01%;
+  max-width: 200px;
   border-radius: 10px;
   text-align: left;
+}
+.mensaje-texto {
+  word-wrap: break-word; /* Romper palabras largas para evitar desbordamiento */
+}
+
+.mensaje-hora {
+  font-size: 10px; 
+  align-self: flex-start;
+  margin-top: 5px; 
 }
 .contenedorDeMensaje {
   overflow: scroll;
   padding: 0.3rem;
-  /* continuar por el error del scroll */
 }
 .contenedorDeMensaje::-webkit-scrollbar {
   display: none;
 }
 
 .chatIconContainer {
-    position: fixed;
-    right: 0.5rem;
-    bottom: 0.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    background-color: gray;
-    border-radius: 100%;
-    box-shadow: 0 0 10px 2px gray;
+  position: fixed;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  background-color: rgb(242, 241, 241);
+  border-radius: 100%;
+  box-shadow: 0 0 10px 2px gray;
 }
-.chatIcon{
-width: 40px;
-height: 40px;
+.chatIcon {
+  width: 40px;
+  height: 40px;
 }
 .closeIcon {
-    position: absolute;
-    right: 0.5rem;
-    top: 0rem;
-    cursor: pointer;
+  position: absolute;
+  right: 0.5rem;
+  top: 0rem;
+  cursor: pointer;
+}
+.iconHora {
+  /* position: fixed; */
+  right: 0.5rem;
+  bottom: 0.5rem;
 }

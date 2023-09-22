@@ -16,7 +16,6 @@ const routes: Routes = [
   { path:'registrar-usuario', component: RegisterUserComponent},
   { path:'verifivar-pasword', component: PasswordVerificationComponent},
   { path:'recuperar-password', component: RecoverPasswordComponent},
-  { path:'chat', component: ChatComponent},
   { path:'**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
