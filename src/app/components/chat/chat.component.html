@@ -8,6 +8,9 @@
     <div id="contenedorDeMensaje" class="contenedorDeMensaje" style="height: 390px; overflow-y: scroll;">
       <div *ngFor="let mensaje of messages" class="msj p-2 mb-2"
          [ngClass]=" (usuarioLogeado.uid==mensaje.emisor) ? 'enviado' : 'recibido'">
+         <div class="mensaje-user">
+          <i class="fas fa-user-circle"></i> {{ mensaje.user }}
+        </div>
         <div class="mensaje-texto">
           {{mensaje.texto}}
         </div>

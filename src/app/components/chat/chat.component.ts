@@ -27,6 +27,7 @@ export class ChatComponent implements OnInit {
       const ahora = new Date();
       const timestamp = Timestamp.fromDate(ahora);
       let mensaje = {
+        user: this.usuarioLogeado.email,
         emisor: this.usuarioLogeado.uid,
         texto: this.newmessage,
         hora: timestamp,
@@ -58,6 +59,7 @@ export class ChatComponent implements OnInit {
     this.chatService.traerMensajes().then((mensajes) => {
       this.messages = mensajes;
       this.scrollToTheLastElementByClassName();
+      console.log(mensajes)
     }).catch((error) => {
       console.log('Error al cargar mensajes desde Firebase:', error);
     });

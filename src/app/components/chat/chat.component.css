@@ -6,7 +6,7 @@
   bottom: 0.5rem;
 }
 .card-header {
-  background-color: black;
+  background-color: #41216b;
   color: white;
   font-weight: 700;
 }
@@ -22,7 +22,7 @@
 .enviado {
   display: block;
   float: right;
-  background-color: teal;
+  background-color: #2fcae3;
   color: white;
   min-width: 50.01%;
   max-width: 200px;
@@ -32,7 +32,7 @@
 .recibido {
   display: block;
   float: left;
-  background-color: gray;
+  background-color: #236ef2;
   color: white;
   min-width: 50.01%;
   max-width: 200px;
@@ -84,4 +84,9 @@
   /* position: fixed; */
   right: 0.5rem;
   bottom: 0.5rem;
+}
+.mensaje-user {
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 4px;
 }
