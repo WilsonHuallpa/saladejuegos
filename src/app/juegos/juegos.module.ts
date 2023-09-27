@@ -4,16 +4,22 @@ import { CommonModule } from '@angular/common';
 import { JuegosRoutingModule } from './juegos-routing.module';
 import { AhorcadoComponent } from './pages/ahorcado/ahorcado.component';
 import { MayorMenorComponent } from './pages/mayor-menor/mayor-menor.component';
+import { AhorcadoDibujarComponent } from './components/ahorcado-dibujar/ahorcado-dibujar.component';
+import { AhorcadoPreguntaComponent } from './components/ahorcado-pregunta/ahorcado-pregunta.component';
+import { AhorcadoKeyboardComponent } from './components/ahorcado-keyboard/ahorcado-keyboard.component';
 
 
 @NgModule({
   declarations: [
     AhorcadoComponent,
-    MayorMenorComponent
+    MayorMenorComponent,
+    AhorcadoDibujarComponent,
+    AhorcadoPreguntaComponent,
+    AhorcadoKeyboardComponent
   ],
   imports: [
     CommonModule,
-    JuegosRoutingModule
+    JuegosRoutingModule,
   ]
 })
 export class JuegosModule { }

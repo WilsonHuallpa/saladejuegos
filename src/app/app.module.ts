@@ -12,7 +12,7 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { DatePipe } from '@angular/common';
-
+import { HttpClientModule } from '@angular/common/http';
 //Componentes
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared-components/navbar/navbar.component';
@@ -35,7 +35,8 @@ import { AhorcadoComponent } from './shared-components/ahorcado/ahorcado.compone
     provideStorage(() => getStorage()),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
