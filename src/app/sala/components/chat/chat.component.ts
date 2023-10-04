@@ -15,6 +15,7 @@ export class ChatComponent implements OnInit {
   newmessage: string = '';
   messages: any = [];
   constructor(private authService: AuthRegisterService, private chatService: ChatService) {}
+  
   ngOnInit(): void {
     const users = this.authService.getUserLogged();
     if (users) {

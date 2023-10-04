@@ -1,12 +1,37 @@
-<div class="contenedor">
-    <app-ahorcado-dibujar (gameFinished)="onGameFinished()" [guesses]="guesses" [question]="question"></app-ahorcado-dibujar>
-    <ng-container *ngIf="!restartGameBtnShown else restartGameBtn">
-        <app-ahorcado-pregunta [guesses]="guesses" [question]="question" ></app-ahorcado-pregunta>
-        <app-ahorcado-keyboard (keyPressed)="guess($event)" [question]="question" ></app-ahorcado-keyboard>
-    </ng-container>
+<div style="margin-top: 50px; font-family: 'Black Ops One', cursive;">
+  <div class="container text-center">
+    <h1 style="color: aliceblue;">AHORCADO</h1>
+    <div class="row justify-content-start">
+      <div class="row justify-content-center">
+        <div class="col-4"> <app-ahorcado-dibujar
+          (gameFinished)="onGameFinished()"
+          [guesses]="guesses"
+          [question]="question"
+        ></app-ahorcado-dibujar></div>
+        <div class="col-4"> 
+          <ng-container *ngIf="!restartGameBtnShown; else restartGameBtn">
+          
+              <app-ahorcado-pregunta
+              class="margin"
+              [guesses]="guesses"
+              [question]="question"
+            ></app-ahorcado-pregunta>
+          
+        
+          <app-ahorcado-keyboard
+            (keyPressed)="guess($event)"
+            [question]="question"
+          ></app-ahorcado-keyboard>
+        </ng-container>
+  
+        <ng-template #restartGameBtn>
+          <button type="button" class="btn btn-success " (click)="reset()">
+            {{ ">>Reiniciar el Juego\<\<" }}
+          </button>
+        </ng-template></div>
+      </div>
+    </div>
+  </div>
 </div>
-<ng-template #restartGameBtn>
-    <button class="btn" (click)="reset()">
-      {{'>>Restart Game\<\<'}}
-    </button>
-  </ng-template>
+
+

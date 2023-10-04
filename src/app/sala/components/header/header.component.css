@@ -1,9 +1,5 @@
 .page-header {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-      url("../../../../assets/banner.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    
     height: 100vh;
     display: flex;
     align-items: center;
@@ -11,4 +7,38 @@
   .card {
     --bs-card-bg: transparent;
   }
+  /* Oculta inicialmente el título */
+  .card {
+    position: relative;
+  }
   
+  .card .card-img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Estilos para la capa negra */
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Capa negra semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Inicialmente oculta la capa negra */
+    transition: opacity 0.3s; /* Agrega una transición suave para la animación */
+  }
+  
+  /* Estilos para el título centrado */
+  .card-title {
+    color: white;
+    text-align: center;
+  }
+  
+  /* Muestra la capa negra y el título cuando el ratón pasa sobre la tarjeta */
+  .card:hover .card-overlay {
+    opacity: 1;
+  }

@@ -13,16 +13,16 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+
 //Componentes
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared-components/navbar/navbar.component';
 
-import { AhorcadoComponent } from './shared-components/ahorcado/ahorcado.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    AhorcadoComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { MayorMenorComponent } from './pages/mayor-menor/mayor-menor.component';
 import { AhorcadoDibujarComponent } from './components/ahorcado-dibujar/ahorcado-dibujar.component';
 import { AhorcadoPreguntaComponent } from './components/ahorcado-pregunta/ahorcado-pregunta.component';
 import { AhorcadoKeyboardComponent } from './components/ahorcado-keyboard/ahorcado-keyboard.component';
+import { PreguntadosComponent } from './pages/preguntados/preguntados.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AhorcadoKeyboardComponent } from './components/ahorcado-keyboard/ahorca
     MayorMenorComponent,
     AhorcadoDibujarComponent,
     AhorcadoPreguntaComponent,
-    AhorcadoKeyboardComponent
+    AhorcadoKeyboardComponent,
+    PreguntadosComponent
   ],
   imports: [
     CommonModule,
