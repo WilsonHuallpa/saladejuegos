@@ -6,8 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { QuienSoyComponent } from './pages/quien-soy/quien-soy.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ChatComponent } from './components/chat/chat.component';
-
+import { ChatComponent } from './pages/chat/chat.component'; 
 
 
 @NgModule({

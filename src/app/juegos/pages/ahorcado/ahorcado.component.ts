@@ -1,11 +1,11 @@
 import { Location } from '@angular/common';
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AhorcadoService } from 'src/app/services/ahorcado.service';
 
 @Component({
   selector: 'app-ahorcado',
   templateUrl: './ahorcado.component.html',
-  styleUrls: ['./ahorcado.component.css']
+  styleUrls: ['./ahorcado.component.css'],
 })
 export class AhorcadoComponent implements OnInit {
   question: string = '';

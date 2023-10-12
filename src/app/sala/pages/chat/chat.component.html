@@ -1,0 +1,80 @@
+<!-- <div  *ngIf="usuarioLogeado && !mostrarChat" class="chatIconContainer" (click)="mostrarChat=true">
+    <img src="../../../assets/chat.png" class="chatIcon" alt="chat-Icon">
+  </div>
+  <div class="card text-center cardContainer" *ngIf="usuarioLogeado && mostrarChat">
+    <div class="card-header">CHAT <div class="closeIcon" (click)="mostrarChat=false">X</div></div>
+         
+    <div class="card-body">
+      <div id="contenedorDeMensaje" class="contenedorDeMensaje" style="height: 390px; overflow-y: scroll;">
+        <div *ngFor="let mensaje of messages" class="msj p-2 mb-2"
+           [ngClass]=" (usuarioLogeado.uid==mensaje.emisor) ? 'enviado' : 'recibido'">
+           <div class="mensaje-user">
+            <i class="fas fa-user-circle"></i> {{ mensaje.user }}
+          </div>
+          <div class="mensaje-texto">
+            {{mensaje.texto}}
+          </div>
+          <div class="mensaje-hora text-end">
+            {{ mensaje.hora.toDate() | date:'HH:mm:ss' }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <form class="card-footer text-muted input-group" (ngSubmit)="enviarMensaje()">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Ingrese su mensaje"
+        [(ngModel)]="newmessage"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      <div class="input-group-append " (click)="enviarMensaje()">
+        <img class="imgEnviar" src="../../../assets/enviar.png" alt="sen message" width="20px" />
+      </div>
+    </form>
+  </div>
+   -->
+   <h1>hola</h1>
+   <section class="chat-container">
+    <div class="card text-center contenedor-carta view-from-right">
+      <div class="card-header">CHAT DE USUARIOS</div>
+  
+      <div class="card-body">
+        <div id="contenedor-mensajes" class="contenedor-mensajes">
+          <p
+            *ngFor="let message of messageList"
+            class="p-2 mensajes"
+            [ngClass]="
+              user.userId == message.user.userId
+                ? 'mensaje-enviado'
+                : 'mensaje-recibido'
+            "
+          >
+            <span
+              [ngClass]="user.userId == message.user.userId ? 'email-1' : 'email-2'"
+              >{{ message.user.userName }}</span
+            >
+            <br />
+            {{ message.text }} <br />
+            <span class="fecha">{{ message.date }}</span>
+          </p>
+        </div>
+      </div>
+  
+      <form class="card-footer text-muted input-group" (ngSubmit)="sendMessage()">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese su mensaje"
+          [(ngModel)]="newMessage"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <div class="input-group-append" (click)="sendMessage()">
+          <span class="input-group-text btn-enviar" id="basic-addon2">
+            <span class="fa-icon">X</span>
+          </span>
+        </div>
+      </form>
+    </div>
+  </section>
+  

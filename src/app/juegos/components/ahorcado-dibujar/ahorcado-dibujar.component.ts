@@ -48,6 +48,7 @@ export class AhorcadoDibujarComponent implements OnInit, OnChanges{
           (guess) => guess.toLowerCase() === this.question[i].toLowerCase()
         )
       ) {
+        //aca donde debo de pasarle el dato si gano o perdio
         didWin = false;
         break;
       }

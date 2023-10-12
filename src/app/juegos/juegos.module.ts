@@ -8,6 +8,9 @@ import { AhorcadoDibujarComponent } from './components/ahorcado-dibujar/ahorcado
 import { AhorcadoPreguntaComponent } from './components/ahorcado-pregunta/ahorcado-pregunta.component';
 import { AhorcadoKeyboardComponent } from './components/ahorcado-keyboard/ahorcado-keyboard.component';
 import { PreguntadosComponent } from './pages/preguntados/preguntados.component';
+import { SnakeComponent } from './pages/snake/snake.component';
+import { ModalComponent } from './components/modal/modal.component';
+
 
 
 @NgModule({
@@ -17,7 +20,9 @@ import { PreguntadosComponent } from './pages/preguntados/preguntados.component'
     AhorcadoDibujarComponent,
     AhorcadoPreguntaComponent,
     AhorcadoKeyboardComponent,
-    PreguntadosComponent
+    PreguntadosComponent,
+    SnakeComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
