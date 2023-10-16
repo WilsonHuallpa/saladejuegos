@@ -93,48 +93,38 @@
 
   .chat-container {
     font-family: "Poppins", sans-serif;
-    background-image: url("../../../../assets/banner.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    min-height: 100vh;
   }
   
   .contenedor-carta {
     width: 70vw;
     height: 350px;
-    position: fixed;
-    z-index: 1;
-    top: 45%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    margin-top: 50px;
   }
   
   .card-body {
     padding: 0.5rem;
-    background-image: url("../../../../assets/chat.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url("../../../../assets/chatjuego.jpg");
     background-size: cover;
     background-position: center;
-    box-shadow: 0 0 16px rgb(196, 5, 170);
+    box-shadow: 0 0 16px #03b103;
   }
   
   .card-header {
-    background-color: rgb(104, 15, 92);
+    background-color: #009507;
     color: white;
     font-weight: bolder;
-    box-shadow: 0 0 16px rgb(196, 5, 170);
+    box-shadow: 0 0 16px #03b103;
   }
   
   .btn-enviar {
     cursor: pointer;
     color: #fff;
-    background: rgb(196, 5, 170);
+    background: #03b103;
   }
   
   .btn-enviar:active {
-    transition: all 0.5s;
+    transition: all 0.7s;
     transform: scale(0.8);
   }
   
@@ -150,13 +140,13 @@
   
   .card-footer {
     background: rgba(0, 0, 0, 0.507);
-    box-shadow: 0 0 16px rgb(196, 5, 170);
+    box-shadow: 0 0 16px #03b103;
   }
   
   .mensaje-enviado {
     display: block;
     float: right;
-    background-color: rgba(54, 219, 17, 0.4);
+    background-color: rgba(219, 20, 17, 0.4);
     color: white;
     text-shadow: 1px 1px 1px black;
     min-width: 50.1%;
@@ -167,7 +157,7 @@
   .mensaje-recibido {
     display: block;
     float: left;
-    background-color: rgba(196, 70, 221, 0.4);
+    background-color: rgba(70, 110, 221, 0.4);
     color: white;
     text-shadow: 1px 1px 1px black;
     min-width: 50.1%;

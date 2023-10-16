@@ -34,7 +34,7 @@
     </form>
   </div>
    -->
-   <!-- <section class="chat-container">
+   <section class="chat-container">
     <div class="card text-center contenedor-carta view-from-right">
       <div class="card-header">CHAT DE USUARIOS</div>
   
@@ -44,7 +44,7 @@
             *ngFor="let message of messageList"
             class="p-2 mensajes"
             [ngClass]="
-              user.userId == message.user.userId
+              user.uid == message.user.userId
                 ? 'mensaje-enviado'
                 : 'mensaje-recibido'
             "
@@ -70,10 +70,10 @@
         />
         <div class="input-group-append" (click)="sendMessage()">
           <span class="input-group-text btn-enviar" id="basic-addon2">
-            <span class="fa-icon">X</span>
+            <span class="fa-icon"> <img class="imgEnviar" src="../../../assets/enviar01.png" alt="sen message" width="20px" /></span>
           </span>
         </div>
       </form>
     </div>
   </section>
-   -->
+  

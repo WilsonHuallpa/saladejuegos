@@ -8,7 +8,8 @@ import {
   query,
   limit,
   DocumentData,
-  QueryDocumentSnapshot
+  QueryDocumentSnapshot,
+  collectionData,
 } from '@angular/fire/firestore';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,20 +19,25 @@ import { map } from 'rxjs/operators';
 export class ChatService {
   constructor(private firestore: Firestore) {}
 
-  getMessages(): Observable<DocumentData[]> {
-    const q = query(
-      collection(this.firestore, 'chat'),
-      orderBy('date', 'asc'),
-      limit(100)
-    );
+  // getMessages(): Observable<DocumentData[]> {
+  //   const q = query(
+  //     collection(this.firestore, 'chat'),
+  //     orderBy('date', 'asc'),
+  //     limit(100)
+  //   );
 
-    return from(getDocs(q)).pipe(
-      map((querySnapshot) =>
-        querySnapshot.docs.map(
-          (doc: QueryDocumentSnapshot<DocumentData>) => doc.data()
-        )
-      )
-    );
+  //   return from(getDocs(q)).pipe(
+  //     map((querySnapshot) =>
+  //       querySnapshot.docs.map(
+  //         (doc: QueryDocumentSnapshot<DocumentData>) => doc.data()
+  //       )
+  //     )
+  //   );
+  // }
+  getMessages() {
+    const col = collection(this.firestore, 'chat');
+    const observable = collectionData(col);
+    return observable;
   }
 
   createMessage(message: any) {

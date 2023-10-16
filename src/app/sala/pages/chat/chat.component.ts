@@ -26,26 +26,7 @@ export class ChatComponent implements OnInit {
     private afAuth: AuthRegisterService,
     private chatService: ChatService,
     private notifyService: NotificationService
-  ) {
-    this.chatService.getMessages().subscribe((messages) => {
-      if (messages !== null) {
-        this.messageList = messages;
-        for (let i = 0; i < this.messageList.length; i++) {
-          const chat = this.messageList[i];
-          chat.date = this.convertDateToUnix(chat);
-          console.log(chat.date);
-        }
-        this.messageList.sort((a: any, b: any) => a.date - b.date);
-        for (let i = 0; i < this.messageList.length; i++) {
-          const chat = this.messageList[i];
-          chat.date = moment(new Date(chat.date)).format('DD-MM-YYYY HH:mm:ss');
-        }
-        setTimeout(() => {
-          this.scrollToTheLastElementByClassName();
-        }, 100);
-      }
-    });
-  }
+  ) {}
   // mostrarChat = false;
   // usuarioLogeado: any;
   // newmessage: string = '';
@@ -62,7 +43,28 @@ export class ChatComponent implements OnInit {
       .obtenerUserRegistrado()
       .then((user) => {
         if (user) {
-          this.usuarioLogeado = user;
+          this.user = user;
+          this.chatService.getMessages().subscribe((messages) => {
+            if (messages !== null) {
+              this.messageList = messages;
+
+              console.log('lista mensaje:', this.messageList);
+              for (let i = 0; i < this.messageList.length; i++) {
+                const chat = this.messageList[i];
+                chat.date = this.convertDateToUnix(chat);
+              }
+              this.messageList.sort((a: any, b: any) => a.date - b.date);
+              for (let i = 0; i < this.messageList.length; i++) {
+                const chat = this.messageList[i];
+                chat.date = moment(new Date(chat.date)).format(
+                  'DD-MM-YYYY HH:mm:ss'
+                );
+              }
+              setTimeout(() => {
+                this.scrollToTheLastElementByClassName();
+              }, 100);
+            }
+          });
         } else {
           this.router.navigate(['/login']);
         }
@@ -79,7 +81,10 @@ export class ChatComponent implements OnInit {
     }
     const date = moment(new Date()).format('DD-MM-YYYY HH:mm:ss');
     const message = {
-      user: this.user,
+      user: {
+        userId: this.user.uid,
+        userName: this.user.email,
+      },
       text: this.newMessage,
       date: date,
     };
@@ -96,7 +101,6 @@ export class ChatComponent implements OnInit {
       //@ts-ignore
       document.getElementById('contenedor-mensajes').scrollTop = toppos;
     }
-
   } // end of scrollToTheLastElementByClassName
 
   convertDateToUnix(chat: any) {
@@ -114,8 +118,6 @@ export class ChatComponent implements OnInit {
 
     return dateDate.getTime();
   } // end of convertDateToUnix
-
-
 
   // enviarMensaje() {
   //   try {
