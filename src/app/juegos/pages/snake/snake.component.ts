@@ -3,6 +3,9 @@ import { Snake } from '../game-engine/snake';
 import { Food } from '../game-engine/food';
 import {  AppStorageService as BestScoreManager } from '../../../services/app.storage.service';
 import { CONTROLS, COLORS, BOARD_SIZE, GAME_MODES } from './app.constants';
+import { AuthRegisterService } from 'src/app/services/auth-register.service';
+import { LogService } from 'src/app/services/log.service';
+import { serverTimestamp } from '@angular/fire/firestore';
 @Component({
   selector: 'app-snake',
   templateUrl: './snake.component.html',
@@ -40,7 +43,9 @@ export class SnakeComponent {
   };
 
   constructor(
-    private bestScoreService: BestScoreManager
+    private bestScoreService: BestScoreManager,
+    private auth: AuthRegisterService,
+    private logservice: LogService
   ) {
     this.setBoard();
   }
@@ -220,6 +225,7 @@ export class SnakeComponent {
       this.bestScoreService.store(this.score);
       this.best_score = this.score;
       this.newBestScore = true;
+
     }
 
     setTimeout(() => {
@@ -227,6 +233,7 @@ export class SnakeComponent {
     }, 500);
 
     this.setBoard();
+    this.createResult(this.score, this.newBestScore)
   }
 
   randomNumber(): any {
@@ -276,5 +283,26 @@ export class SnakeComponent {
 
     this.resetFruit();
     this.updatePositions();
+  }
+  createResult(score: number, succes: boolean) {
+    const email = this.auth.getUserEmail();
+    if(email){
+      let result = {
+        game: 'serpiente',
+        user: email,
+        score: score + ' correctas',
+        currentDate: serverTimestamp(),
+        vitory: succes,
+      };
+      
+      this.logservice
+        .registerResultado('serpienteResultados', result)
+        .then((res: any) => {
+          console.log('Resultados Enviados!', res);
+        })
+        .catch((error: any) => {
+          console.log('Error al enviar Resultados!');
+        });
+    }
   }
 }

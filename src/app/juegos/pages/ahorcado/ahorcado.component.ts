@@ -84,6 +84,5 @@ export class AhorcadoComponent implements OnInit {
           console.log('Error al enviar Resultados!');
         });
     }
-   
   }
 }

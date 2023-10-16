@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { serverTimestamp } from '@firebase/firestore';
 import { ApiCountriesService } from 'src/app/services/api-countries.service';
+import { AuthRegisterService } from 'src/app/services/auth-register.service';
+import { LogService } from 'src/app/services/log.service';
 // import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
@@ -29,7 +32,9 @@ export class PreguntadosComponent implements OnInit {
   constructor(
     private router: Router,
     private apiPaises: ApiCountriesService,
-    private notifyService: NotificationService
+    private notifyService: NotificationService,
+    private auth: AuthRegisterService,
+    private logservice: LogService
   ) {
     this.apiPaises.getPaises();
   }
@@ -138,7 +143,7 @@ export class PreguntadosComponent implements OnInit {
           } else {
             this.notifyService.showError('¡PERDISTE!', 'Preguntados');
           }
-          this.createResult();
+          this.createResult(this.score,this.victory);
         }
       }
     }
@@ -155,24 +160,26 @@ export class PreguntadosComponent implements OnInit {
     this.gameOverText = '¡PERDISTE!';
     this.currentQuestion = this.listOfQuestions[this.currentIndex];
     this.notifyService.showInfo('Juego Reiniciado', 'Preguntados');
-  } // end of restartGame
-
-  createResult() {
-    const date = new Date();
-    const currentDate = date.toLocaleDateString();
-    const result = {
-      game: 'preguntados',
-      user: this.user,
-      currentDate: currentDate,
-      victory: this.victory,
-    };
-    // this.authService
-    //   .sendUserResult('preguntadosResultados', result)
-    //   .then((res: any) => {
-    //     console.log('Resultados Enviados!');
-    //   })
-    //   .catch((err: any) => {
-    //     console.log('Error al enviar Resultados!');
-    //   });
-  } // end of createResult
+  }
+  createResult(score: number, succes: boolean) {
+    const email = this.auth.getUserEmail();
+    if(email){
+      let result = {
+        game: 'preguntado',
+        user: email,
+        score: score + ' correctas',
+        currentDate: serverTimestamp(),
+        vitory: succes,
+      };
+      
+      this.logservice
+        .registerResultado('preguntadoResultados', result)
+        .then((res: any) => {
+          console.log('Resultados Enviados!', res);
+        })
+        .catch((error: any) => {
+          console.log('Error al enviar Resultados!');
+        });
+    }
+  }
 }

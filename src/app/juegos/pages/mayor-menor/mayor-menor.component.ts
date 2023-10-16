@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { serverTimestamp } from '@firebase/firestore';
+import { AuthRegisterService } from 'src/app/services/auth-register.service';
+import { LogService } from 'src/app/services/log.service';
 // import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
 @Component({
@@ -78,8 +81,9 @@ export class MayorMenorComponent implements OnInit {
   // private authService: AuthService,
   constructor(
     private router: Router,
-
-    private notifyService: NotificationService
+    private notifyService: NotificationService,
+    private auth: AuthRegisterService,
+    private logservice: LogService
   ) {}
 
   ngOnInit(): void {
@@ -154,6 +158,7 @@ export class MayorMenorComponent implements OnInit {
     if (this.currentIndex === 9) {
       this.activeGame = false;
       this.gameOver = true;
+
       if (this.score >= 5) {
         this.victory = true;
         this.textGameOver = '¡GANASTE!';
@@ -161,26 +166,29 @@ export class MayorMenorComponent implements OnInit {
       } else {
         this.notifyService.showError('¡PERDISTE!', 'Mayor o Menor');
       }
-      this.createResult();
+      this.createResult(this.score, this.victory);
     }
-  } // end of playMayorMenor
+  }
 
-  createResult() {
-    let date = new Date();
-    let currentDate = date.toLocaleDateString();
-    let result = {
-      game: 'mayorMenor',
-      user: this.user,
-      currentDate: currentDate,
-      victory: this.victory,
-    };
-    // this.authService
-    //   .sendUserResult('mayorMenorResultados', result)
-    //   .then((res) => {
-    //     console.log('Resultados Enviados!');
-    //   })
-    //   .catch((err) => {
-    //     console.log('Error al enviar Resultados!');
-    //   });
-  } // end of createResult
+  createResult(score: number, succes: boolean) {
+    const email = this.auth.getUserEmail();
+    if(email){
+      let result = {
+        game: 'mayor o menor',
+        user: email,
+        score: score + ' correctas',
+        currentDate: serverTimestamp(),
+        vitory: succes,
+      };
+      
+      this.logservice
+        .registerResultado('mayorMenorResultados', result)
+        .then((res: any) => {
+          console.log('Resultados Enviados!', res);
+        })
+        .catch((error: any) => {
+          console.log('Error al enviar Resultados!');
+        });
+    }
+  }
 }
