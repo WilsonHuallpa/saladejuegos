@@ -1,6 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { serverTimestamp } from '@angular/fire/firestore';
 import { AhorcadoService } from 'src/app/services/ahorcado.service';
+import { AuthRegisterService } from 'src/app/services/auth-register.service';
+import { LogService } from 'src/app/services/log.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -15,7 +18,9 @@ export class AhorcadoComponent implements OnInit {
   restartGameBtnShown = false;
   constructor(
     private hangmanService: AhorcadoService,
-    private location: Location
+    private location: Location,
+    private logservice: LogService,
+    private auth: AuthRegisterService
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +60,30 @@ export class AhorcadoComponent implements OnInit {
     console.log(this.question);
   }
 
-  onGameFinished() {
+  onGameFinished(mistakesRemaining: number, success: boolean) {
+    this.createResult(mistakesRemaining, success)
     this.restartGameBtnShown = true;
+  }
+  createResult(score: number, succes: boolean) {
+    const email = this.auth.getUserEmail();
+    if(email){
+      let result = {
+        game: 'ahorcado',
+        user: email,
+        score: score + '/7',
+        currentDate: serverTimestamp(),
+        vitory: succes,
+      };
+      
+      this.logservice
+        .registerResultado('ahorcadoResultados', result)
+        .then((res: any) => {
+          console.log('Resultados Enviados!', res);
+        })
+        .catch((error: any) => {
+          console.log('Error al enviar Resultados!');
+        });
+    }
+   
   }
 }

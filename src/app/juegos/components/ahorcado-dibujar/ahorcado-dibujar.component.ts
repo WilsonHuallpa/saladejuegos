@@ -13,7 +13,7 @@ import { Component,  EventEmitter,
 export class AhorcadoDibujarComponent implements OnInit, OnChanges{
   @Input() guesses: string[] = [];
   @Input() question: string = '';
-  @Output() gameFinished = new EventEmitter<boolean>();
+  @Output() gameFinished = new EventEmitter<{ mistakesRemaining: number, success: boolean }>();
   MAX_MISTAKES = 7;
   mistakesRemaining;
   success: boolean = false;
@@ -55,7 +55,7 @@ export class AhorcadoDibujarComponent implements OnInit, OnChanges{
     }
     this.success = didWin;
     if (this.success || this.mistakesRemaining === 0) {
-      this.gameFinished.emit(this.success);
+      this.gameFinished.emit({ mistakesRemaining: this.mistakesRemaining, success: this.success });
     }
   }
 

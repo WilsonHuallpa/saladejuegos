@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
   providedIn: 'root'
 })
 export class AuthRegisterService {
-
+  
   constructor(private auth: Auth) { }
 
   obtenerUserRegistrado(): Promise<User | null> {
@@ -32,5 +32,9 @@ export class AuthRegisterService {
   }
   getUserLogged(){
     return this.auth.currentUser;
+  }
+  getUserEmail(): string | null {
+    const user = this.auth.currentUser;
+    return user ? user.email : null;
   }
 }
