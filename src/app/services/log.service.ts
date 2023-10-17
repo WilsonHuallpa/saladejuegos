@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { LogUser } from '../interfaces/LogUser';
 import Resultado from '../interfaces/Resultado';
+import Encuesta from '../interfaces/Encuesta';
 
 
 @Injectable({
@@ -18,5 +19,9 @@ export class LogService {
   registerResultado(nombreJuego: string, resultado: Resultado){
     const aCollection = collection(this.firestore, nombreJuego); 
     return addDoc(aCollection, resultado);
+  }
+  registrarEncuesta(encuesta: Encuesta){
+    const aCollection = collection(this.firestore, 'encuestas');
+    return addDoc(aCollection, encuesta);
   }
 }

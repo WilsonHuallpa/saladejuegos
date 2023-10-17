@@ -1,0 +1,263 @@
+<div class="container">
+  <div class="row g-5" style="color: aliceblue">
+    <div class="col-12">
+      <form
+        [formGroup]="encuesta"
+        (ngSubmit)="enviarEncuesta()"
+        class="needs-validation"
+      >
+        <div class="row g-3">
+          <div class="col-lg-6 col-12">
+            <label for="firstName" class="form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              placeholder="Ingrese nombre"
+              formControlName="nombre"
+            />
+            <span
+              *ngIf="
+                encuesta.get('nombre')?.hasError('required') &&
+                encuesta.get('nombre')?.touched
+              "
+              class="text-danger"
+            >
+              EL <strong>Nombre</strong> es requerido</span
+            >
+            <span
+              *ngIf="
+                encuesta.get('nombre')?.hasError('minlength') &&
+                encuesta.get('nombre')?.touched
+              "
+              class="text-danger"
+            >
+              EL <strong>Nombre</strong> Debe ser mas de 3 caracteres</span
+            >
+          </div>
+          <div class="col-lg-6 col-12">
+            <label for="lastName" class="form-label">Apellido</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              placeholder="Ingrese apellido"
+              formControlName="apellido"
+            />
+            <span
+              *ngIf="
+                encuesta.get('apellido')?.hasError('required') &&
+                encuesta.get('apellido')?.touched
+              "
+              class="text-danger"
+            >
+              EL <strong>Apellido</strong> es requerido</span
+            >
+            <span
+              *ngIf="
+                encuesta.get('apellido')?.hasError('minlength') &&
+                encuesta.get('apellido')?.touched
+              "
+              class="text-danger"
+            >
+              EL <strong>Apellido</strong> Debe ser mas de 3 caracteres</span
+            >
+          </div>
+
+          <div class="col-lg-6 col-12">
+            <label for="edad" class="form-label">Edad</label>
+            <input
+              type="text"
+              class="form-control"
+              id="edad"
+              placeholder="Ingrese edad"
+              formControlName="edad"
+            />
+            <span
+              *ngIf="
+                encuesta.get('edad')?.hasError('required') &&
+                encuesta.get('edad')?.touched
+              "
+              class="text-danger"
+            >
+              La <strong>Edad</strong> es requerido</span
+            >
+            <span
+              *ngIf="
+                encuesta.get('edad')?.hasError('min') &&
+                encuesta.get('edad')?.touched
+              "
+              class="text-danger"
+            >
+              La <strong>Edad</strong> debe ser mayor o igual a 18 años.
+            </span>
+            <span
+              *ngIf="
+                encuesta.get('edad')?.hasError('max') &&
+                encuesta.get('edad')?.touched
+              "
+              class="text-danger"
+            >
+              La <strong>Edad</strong> debe ser menor o igual a 99 años.
+            </span>
+          </div>
+          <div class="col-lg-6 col-12">
+            <label for="telefono" class="form-label">Telefono</label>
+            <input
+              type="text"
+              class="form-control"
+              id="telefono"
+              placeholder="Ingrese telelfono"
+              formControlName="telefono"
+            />
+            <span
+              *ngIf="
+                encuesta.get('telefono')?.hasError('required') &&
+                encuesta.get('telefono')?.touched
+              "
+              class="text-danger"
+            >
+              EL <strong>Telefono</strong> es requerido</span
+            >
+            <span
+              *ngIf="
+                encuesta.get('telefono')?.hasError('minlength') &&
+                encuesta.get('telefono')?.touched
+              "
+              class="text-danger"
+            >
+              EL <strong>Telefono</strong> Debe ser mas de 5 caracteres</span
+            >
+            <span
+              *ngIf="
+                encuesta.get('telefono')?.hasError('maxlength') &&
+                encuesta.get('telefono')?.touched
+              "
+              class="text-danger"
+            >
+              EL <strong>Telefono</strong> Debe ser menor de 10 caracteres</span
+            >
+          </div>
+        </div>
+
+        <hr class="my-4" />
+        <div>
+          <h4 class="mb-3">¿Cuál es tu juego favorito en nuestro sitio?</h4>
+          <select
+            class="form-select form-select-lg mb-3"
+            aria-label="Large select example"
+            formControlName="pregunta01"
+          >
+            <option selected>Abrir este menú de selección</option>
+            <option value="Ahorcado">Ahorcado</option>
+            <option value="Mayor o Menor">Mayor o Menor</option>
+            <option value="Preguntado">Preguntado</option>
+            <option value="Serpiente">Serpiente</option>
+          </select>
+          <span
+            *ngIf="
+              encuesta.get('pregunta01')?.hasError('required') &&
+              encuesta.get('pregunta01')?.touched
+            "
+            class="text-danger"
+          >
+            La <strong>Pregunta</strong> es requerido</span
+          >
+        </div>
+
+        <h4 class="mb-3">
+          ¿Cómo calificarías la calidad de los gráficos en nuestros juegos?
+          (escala del 1 al 5)
+        </h4>
+
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            value="1"
+            id="inlineRadio1"
+            formControlName="pregunta02"
+          />
+          <label class="form-check-label" for="inlineRadio1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            value="2"
+            id="inlineRadio2"
+            formControlName="pregunta02"
+          />
+          <label class="form-check-label" for="inlineRadio2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            value="3"
+            id="inlineRadio3"
+            formControlName="pregunta02"
+          />
+          <label class="form-check-label" for="inlineRadio3">3</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            value="4"
+            id="inlineRadio4"
+            formControlName="pregunta02"
+          />
+          <label class="form-check-label" for="inlineRadio4">4</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            value="5"
+            id="inlineRadio5"
+            formControlName="pregunta02"
+          />
+          <label class="form-check-label" for="inlineRadio5">5</label>
+        </div>
+        <span
+          *ngIf="
+            encuesta.get('pregunta02')?.hasError('required') &&
+            encuesta.get('pregunta02')?.touched
+          "
+          class="text-danger"
+        >
+          La <strong>Pregunta</strong> es requerido</span
+        >
+
+        <h4 class="mb-3">¿Qué es lo que más te gusta de nuestra página?</h4>
+        <div class="mb-3">
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            formControlName="pregunta03"
+            rows="3"
+          ></textarea>
+          <span
+          *ngIf="
+            encuesta.get('pregunta03')?.hasError('required') &&
+            encuesta.get('pregunta03')?.touched
+          "
+          class="text-danger"
+        >
+          La <strong>Pregunta</strong> es requerido</span
+        >
+        </div>
+        <hr class="my-4" />
+
+        <button
+          class="w-100 btn btn-success btn-lg"
+          type="submit"
+          [disabled]="encuesta.invalid"
+        >
+          Enviar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
