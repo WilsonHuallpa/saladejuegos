@@ -1,85 +1,124 @@
-<div class="d-flex justify-content-center align-items-center vh-100">
-    <div *ngIf="!loading" class="card" style="width: 400px">
-      <div class="card-body">
-        <h2 class="text-center mb-4">Login</h2>
-        <form (ngSubmit)="login()" [formGroup]="loginUsuario">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"
-              >Correo Electronico</label
-            >
-            <input
-              type="email"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              formControlName="email"
-            />
-            <span
-              *ngIf="
-                loginUsuario.get('email')?.hasError('required') &&
-                loginUsuario.get('email')?.touched
-              "
-              class="text-danger"
-            >
-              EL <strong>correo</strong> es requerido</span
-            >
-            <span
-              *ngIf="
-                loginUsuario.get('email')?.hasError('email') &&
-                loginUsuario.get('email')?.touched
-              "
-              class="text-danger"
-            >
-              EL <strong>correo</strong> es invalido</span
-            >
+<div class="container" *ngIf="!loading">
+  <div class="row">
+    <div class="col-lg-3 col-md-2"></div>
+    <div class="col-lg-6 col-md-8 login-box">
+      <div class="col-lg-12 login-key">
+        <img
+          src="../../../../assets/control-de-juego.png"
+          alt="Control-de-juego"
+          width="120"
+        />
+      </div>
+      <div class="col-lg-12 login-title">INICIAR SESION</div>
+      <div class="col-lg-12 login-form px-3">
+        <div class="col-lg-12 login-form">
+          <form (ngSubmit)="login()" [formGroup]="loginUsuario">
+            <div class="form-group">
+              <label class="form-control-label">CORREO ELECTRONICO</label>
+              <input
+                type="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                formControlName="email"
+              />
+              <span
+                *ngIf="
+                  loginUsuario.get('email')?.hasError('required') &&
+                  loginUsuario.get('email')?.touched
+                "
+                class="text-danger"
+              >
+                EL <strong>correo</strong> es requerido</span
+              >
+              <span
+                *ngIf="
+                  loginUsuario.get('email')?.hasError('email') &&
+                  loginUsuario.get('email')?.touched
+                "
+                class="text-danger"
+              >
+                EL <strong>correo</strong> es invalido</span
+              >
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">CONTRASEÑA</label>
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+                formControlName="password"
+              />
+              <span
+                *ngIf="
+                  loginUsuario.get('password')?.hasError('required') &&
+                  loginUsuario.get('password')?.touched
+                "
+                class="text-danger"
+              >
+                La <strong>contraseña</strong> es requerido</span
+              >
+              <span
+                *ngIf="
+                  loginUsuario.get('password')?.hasError('minlength') &&
+                  loginUsuario.get('password')?.touched
+                "
+                class="text-danger"
+              >
+                La <strong>contraseña</strong> debe de tener 6 caracteres</span
+              >
+            </div>
+
+            <div class="loginbttm">
+              <div class="col-12 login-btm login-button">
+                <button
+                  class="btn btn-outline-primary w-100 btn-lg"
+                  type="submit"
+                  [disabled]="loginUsuario.invalid"
+                >
+                  INGRESAR
+                </button>
+              </div>
+            </div>
+          </form>
+          <div class="text-center">
+            <p class="mt-3" style="color: aliceblue">
+              No tienes cuenta? <a routerLink="/auth/register">Registrar</a>
+            </p>
           </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Contraseña</label
-            >
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              formControlName="password"
-            />
-            <span
-              *ngIf="
-                loginUsuario.get('password')?.hasError('required') &&
-                loginUsuario.get('password')?.touched
-              "
-              class="text-danger"
-            >
-              La <strong>contraseña</strong> es requerido</span
-            >
-            <span
-              *ngIf="
-                loginUsuario.get('password')?.hasError('minlength') &&
-                loginUsuario.get('password')?.touched
-              "
-              class="text-danger"
-            >
-              La <strong>contraseña</strong> debe de tener 6 caracteres</span
-            >
+          <div class="row">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button
+                type="button"
+                (click)="quickAccess('wilson@gmail.com', '123456')"
+                class="btn btn-outline-primary"
+              >
+                WILSON
+              </button>
+              <button
+                type="button"
+                (click)="quickAccess('franco@gmail.com', '123456')"
+                class="btn btn btn-outline-success"
+              >
+                FRANCO
+              </button>
+              <button
+                type="button"
+                (click)="quickAccess('lautaro@gmail.com', '123456')"
+                class="btn btn-outline-warning"
+              >
+                LAUTARO
+              </button>
+            </div>
           </div>
-          <button class="btn btn-primary w-100 btn-lg" type="submit" [disabled]="loginUsuario.invalid">
-            INGRESAR
-          </button>
-        </form>
-        <div class="text-center">
-          <p class="mt-3">
-            No tienes cuenta? <a routerLink="/auth/register">Registrar</a>
-          </p>
-          <a routerLink="/auth/forgot">Recuperar ontraseña</a>
+         
         </div>
       </div>
-      <div class="btn-group"  role="group" aria-label="Basic example">
-        <button type="button" (click)="quickAccess('wilson@gmail.com','123456')" class="btn btn-primary">wilson</button>
-        <button type="button" (click)="quickAccess('franco@gmail.com','123456')" class="btn btn btn-success">franco</button>
-        <button type="button" (click)="quickAccess('lautaro@gmail.com','123456')" class="btn btn-warning">lautaro</button>
-      </div>
+      <div class="col-lg-3 col-md-2"></div>
     </div>
-    <app-spinner *ngIf="loading"></app-spinner>
-    
   </div>
-  
+</div>
+<div class="d-flex justify-content-center align-items-center vh-100" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+

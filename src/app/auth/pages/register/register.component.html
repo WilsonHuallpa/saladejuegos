@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center align-items-center vh-100">
+<!-- <div class="d-flex justify-content-center align-items-center vh-100">
     <div *ngIf="!loading" class="card" style="width: 400px">
       <div class="card-body">
         <h2 class="text-center mb-4">Registrarse</h2>
@@ -88,4 +88,109 @@
     </div>
     <app-spinner *ngIf="loading"></app-spinner>
   </div>
+   -->
+  <div class="container" *ngIf="!loading">
+    <div class="row">
+      <div class="col-lg-3 col-md-2"></div>
+      <div class="col-lg-6 col-md-8 login-box">
+        <div class="col-lg-12 login-key">
+          <img
+            src="../../../../assets/control-de-juego.png"
+            alt="Control-de-juego"
+            width="120"
+          />
+        </div>
+        <div class="col-lg-12 login-title">REGISTRARSE</div>
+        <div class="col-lg-12 login-form px-3">
+          <div class="col-lg-12 login-form">
+            <form (ngSubmit)="registrar()" [formGroup]="registrarUsuarios">
+              <div class="mb-3">
+                <label class="form-control-label">CORREO ELECTRONICO</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  formControlName="email"
+                />
+                <span
+                  *ngIf="
+                    registrarUsuarios.get('email')?.hasError('required') &&
+                    registrarUsuarios.get('email')?.touched
+                  "
+                  class="text-danger"
+                >
+                  EL <strong>correo</strong> es requerido</span
+                >
+                <span
+                  *ngIf="
+                    registrarUsuarios.get('email')?.hasError('email') &&
+                    registrarUsuarios.get('email')?.touched
+                  "
+                  class="text-danger"
+                >
+                  EL <strong>correo</strong> es invalido</span
+                >
+              </div>
+              <div class="mb-3">
+                <label class="form-control-label">CONTRASEÑA</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  formControlName="password"
+                />
+                <span
+                  *ngIf="
+                    registrarUsuarios.get('password')?.hasError('required') &&
+                    registrarUsuarios.get('password')?.touched
+                  "
+                  class="text-danger"
+                >
+                  La <strong>contraseña</strong> es requerido</span
+                >
+                <span
+                  *ngIf="
+                    registrarUsuarios.get('password')?.hasError('minlength') &&
+                    registrarUsuarios.get('password')?.touched
+                  "
+                  class="text-danger"
+                >
+                  La <strong>contraseña</strong> debe de tener 6 caracteres</span
+                >
+              </div>
+              <div class="mb-3">
+                <label class="form-control-label">REPETIR CONTRASEÑA</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="exampleInputPassword2"
+                  formControlName="repetirPassword"
+                />
+              </div>
+              <div class="loginbttm">
+                <div class="col-12 login-btm login-button">
+                  <button
+                    class="btn btn-outline-primary w-100 btn-lg"
+                    type="submit"
+                    [disabled]="registrarUsuarios.invalid"
+                  >
+                  ACEPTAR
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="text-center mt-3">
+              <a routerLink="/Login">Volver</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-2"></div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center align-items-center vh-100" *ngIf="loading">
+    <app-spinner></app-spinner>
+  </div>
+  
   

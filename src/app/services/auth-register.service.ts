@@ -6,7 +6,19 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
   providedIn: 'root'
 })
 export class AuthRegisterService {
-  
+  private user = {
+    email: '',
+    acceptedTerms: false,
+  };
+
+  getUser() {
+    return this.user;
+  }
+
+  setUser(email: string, acceptedTerms: boolean) {
+    this.user.email = email;
+    this.user.acceptedTerms = acceptedTerms;
+  }
   constructor(private auth: Auth) { }
 
   obtenerUserRegistrado(): Promise<User | null> {
